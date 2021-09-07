@@ -1,0 +1,11 @@
+=> When using nestjs/typeorm we did not create repositories instead nestjs/typeorm 
+creates it for us automatically, but if use something other like mongoose for example 
+you create your own repositories.
+
+# Repositories contains Methods to :
+ - find
+ - delete 
+ - create
+ - update
+
+ 
