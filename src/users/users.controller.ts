@@ -9,7 +9,10 @@ import {
   Query,
   UseInterceptors,
 } from '@nestjs/common';
-import { SerializeInterceptor } from 'src/utils/interceptors/serialize.interceptor';
+import {
+  Serialize,
+  SerializeInterceptor,
+} from 'src/utils/interceptors/serialize.interceptor';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserResponseDto } from './dtos/user-response.dto';
@@ -24,7 +27,7 @@ export class UsersController {
     this.usersService.create(body.email, body.password);
   }
 
-  @UseInterceptors(new SerializeInterceptor(UserResponseDto))
+  @Serialize(UserResponseDto)
   @Get('/:id')
   findUser(@Param('id') id: string): Promise<User> {
     console.log('2- Run after request handled');
