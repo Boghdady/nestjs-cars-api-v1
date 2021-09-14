@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { Serialize } from 'src/utils/interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
+import { CurrentUser } from './decoratos/current-user.decorator';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { SignInDto } from './dtos/signin.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -45,9 +46,14 @@ export class UsersController {
     session.userId = null;
   }
 
+  // @Get('/whoami')
+  // whoAmI(@Session() session: any) {
+  //   return this.usersService.findOne(session.userId);
+  // }
+
   @Get('/whoami')
-  whoAmI(@Session() session: any) {
-    return this.usersService.findOne(session.userId);
+  whoAmI(@CurrentUser() user: User) {
+    return user;
   }
 
   @Get('/:id')
