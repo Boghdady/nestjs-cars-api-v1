@@ -7,11 +7,11 @@ import { User } from './user.entity';
 export class UsersService {
   constructor(@InjectRepository(User) private repo: Repository<User>) {}
 
-  async create(email: string, password: string) {
+  async create(email: string, password: string): Promise<User> {
     // create instance of user entity that run hooks in entity
-    const user = this.repo.create({ email, password });
+    const user = await this.repo.create({ email, password });
 
-    await this.repo.save(user);
+    return await this.repo.save(user);
   }
 
   async find(email: string): Promise<User[]> {
@@ -37,7 +37,7 @@ export class UsersService {
   // remove vs delete
   // remove => work with entity remove(Entity) so it runs the entity hooks
   // remover => make two trips to db
-  // delete => work with search certeria delete(id) delete({email}) so it not run the hooks
+  // delete => work with search criteria delete(id) delete({email}) so it not run the hooks
   // delete => make one trip to db
   async remove(id: number) {
     const user = await this.findOne(id);

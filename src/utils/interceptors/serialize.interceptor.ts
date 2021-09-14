@@ -8,8 +8,14 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { plainToClass } from 'class-transformer';
 
+// Make a type class for dto
+interface ClassConstructor {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  new (...args: any[]): {};
+}
+
 // Make a decorator to wrap custom interceptor
-export function Serialize(dto: any) {
+export function Serialize(dto: ClassConstructor) {
   return UseInterceptors(new SerializeInterceptor(dto));
 }
 
@@ -27,6 +33,7 @@ export class SerializeInterceptor implements NestInterceptor {
         // 2- Run something before the response is sent out
         console.log("3- I'm running before the response is sent out", data);
 
+        // Apply DTO rules to the response data
         return plainToClass(this.dto, data, {
           excludeExtraneousValues: true,
         });
