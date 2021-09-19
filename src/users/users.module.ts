@@ -14,6 +14,7 @@ import { UsersService } from './users.service';
     UsersService,
     AuthService,
     {
+      // Check if user signed in put the user into the request
       provide: APP_INTERCEPTOR,
       useClass: CurrentUserInterceptor,
     },

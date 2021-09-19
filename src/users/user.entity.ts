@@ -1,9 +1,11 @@
+import { Report } from 'src/reports/report.entity';
 import {
   AfterInsert,
   AfterRemove,
   AfterUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -17,6 +19,12 @@ export class User {
 
   @Column()
   password: string;
+
+  // - Does not change the Users table
+  // - Reports tied to their user will be accessed with: user.reports
+  // - Association is not automatically fetched when we fetch a user
+  @OneToMany(() => Report, (report) => report.user)
+  reports: Report[];
 
   @AfterInsert()
   logInsert() {
