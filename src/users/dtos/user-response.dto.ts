@@ -8,4 +8,7 @@ export class UserResponseDto {
 
   @Expose()
   email: string;
+
+  @Expose()
+  admin: boolean;
 }

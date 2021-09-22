@@ -3,12 +3,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 // import CookieSession from 'cookie-session';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const cookieSession = require('cookie-session');
+// const cookieSession = require('cookie-session');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(cookieSession({ keys: ['putAnyStringSecretKey'] }));
+  // app.use(cookieSession({ keys: ['putAnyStringSecretKey'] }));
 
   app.useGlobalPipes(
     new ValidationPipe({

@@ -16,3 +16,8 @@ export class AuthGuard implements CanActivate {
     // return request.session.userId;
   }
 }
+
+// Note:
+// in this admin guard we can't get  the currentUser from the CurrentUser interceptor
+// because the interceptor run after the guard but so we use the middleware is put user in the request
+// because middleware run before guard

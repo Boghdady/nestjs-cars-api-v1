@@ -1,10 +1,12 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 import { Report } from './reports/report.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cookieSession = require('cookie-session');
 
 @Module({
   imports: [
@@ -35,4 +37,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  // configure => function that run automatically
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(cookieSession({ keys: ['jdhskjhfdjh'] })).forRoutes('*');
+  }
+}

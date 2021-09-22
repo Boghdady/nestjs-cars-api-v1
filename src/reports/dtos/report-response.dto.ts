@@ -27,6 +27,9 @@ export class ReportResponseDto {
   @Expose()
   price: number;
 
+  @Expose()
+  approved: boolean;
+
   // Extract the user id from report entity (obj) and assign it to user_id
   @Transform(({ obj }) => obj.user.id)
   @Expose()

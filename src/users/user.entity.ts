@@ -14,11 +14,14 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
   password: string;
+
+  @Column({ default: true })
+  admin: boolean;
 
   // - Does not change the Users table
   // - Reports tied to their user will be accessed with: user.reports

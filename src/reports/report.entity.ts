@@ -27,6 +27,9 @@ export class Report {
   @Column()
   lat: string;
 
+  @Column({ default: false })
+  approved: boolean;
+
   // - Changes the Reports table
   // - User who created this report will be accessed with: report.user
   // - Association is not automatically fetched when we fetch a Report

@@ -31,3 +31,5 @@ export class CurrentUserInterceptor implements NestInterceptor {
     return next.handle();
   }
 }
+
+//  We replaced this interceptor with a middleware
