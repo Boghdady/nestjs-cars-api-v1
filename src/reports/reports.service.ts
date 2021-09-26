@@ -4,6 +4,7 @@ import { User } from 'src/users/user.entity';
 import { Repository } from 'typeorm';
 import { ApproveReportDto } from './dtos/approve-report.dto';
 import { CreateReportDto } from './dtos/create-report.dto';
+import { GetEstimatesDto } from './dtos/get-estimates.dto';
 import { Report } from './report.entity';
 
 @Injectable()
@@ -26,5 +27,16 @@ export class ReportsService {
     }
     report.approved = body.approved;
     return this.repo.save(report);
+  }
+
+  async createCarEstimates(query: GetEstimatesDto) {
+    return this.repo
+      .createQueryBuilder()
+      .select('*')
+      .where('make= :make', { make: query.make })
+      .andWhere('model= :model', { model: query.model })
+      .orderBy('ABS(mileage - :mileage)', 'DESC')
+      .setParameters({ mileage: query.mileage })
+      .getRawMany();
   }
 }

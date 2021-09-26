@@ -4,7 +4,18 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { User } from '../user.entity';
 import { UsersService } from '../users.service';
+
+// Add property to existing interface (Request)
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Express {
+    interface Request {
+      currentUser?: User;
+    }
+  }
+}
 
 @Injectable()
 export class CurrentUserMiddleware implements NestMiddleware {
@@ -15,7 +26,6 @@ export class CurrentUserMiddleware implements NestMiddleware {
       throw new UnauthorizedException('Unauthenticated user, please login');
     }
     const user = await this.usersService.findOne(userId);
-    // @ts-ignore
     req.currentUser = user;
 
     next();
