@@ -1,0 +1,74 @@
+----------------------------------------------Section (3)---------------------------------------------------------------
+### Creation and preparation of the virtual private server (VPS)
+
+# Generating SSH keys to access the vps safely
+=> Usage :  SSH protocol can establish secure connection with your system and your repairs
+=> Generate Key : 
+1- ssh-keygen
+2- choose the file name and change the path if you need "/Users/index/.ssh/my_vps_root", change "my_vps_root" name 
+3- set a password for your key if you need
+
+# Create a vps in digital ocean
+
+# Connecting to vps via ssh 
+- shh root@vpsIP -i "/Users/index/.ssh/my_vps_root"
+
+# Improving the connection via vps
+1- Go to the .ssh folder "/Users/index/.ssh"
+2- Create config file without ext "config" maybe the file is exist
+3- Add this configuration 
+Host my_vps_root
+  HostName "vpsIP"
+  User root
+  IdentityFile "location for ssh key file" ex: "/Users/index/.ssh/my_vps_root"
+
+# Keeping the connection active with VPS server
+1- Open config file that we created in the prev step and add these two lines at 
+the top of config file to be a global variables:
+ServerAliveInterval 120
+ServerAliveCountMax 3
+
+# Resolving an existing domain to the vps server
+1- Add domain to digital ocean (Network tab)
+2- Add Nameservers Provider for digital ocean in goddady (ns1.digitalocean.com)
+3- In digitalocean add these DNS records
+A record => @
+CNAME record => w w w => @ => 3600 
+
+
+----------------------------------------------Section (4)---------------------------------------------------------------
+### Using and understanding some essential commands and tasks on a VPS
+
+# How to explore and navigate paths in the vps
+"ls" => showing unhidden files
+"ls -la" or "ll" => showing hidden and unhidden files
+"ll + path " ex: "ll .ssh" => showing all files in .ssh folder
+"cd - " => going to the prev location
+
+
+# File managment (create, delete, move, copy and read)
+"touch" => create file 
+"nano" => create file and open it in the editor
+"cat + file name" => show the content inside the file
+"mv + file path + destination path" => move file to specific path. ex:  "mv text.txt /" will move text.txt to the root 
+"mv + currentName + newName" => rename file. ex: "mv text.txt newText.txt"
+"cp + fileNameWantToCopy + nameOfTheCopy" => take a copy from exiting file. ex: "cp text.txt text3.txt"
+"rm + file name" => remove a file
+
+# Directory managmen (create, delete, move, copy and read)
+"mkdir + dir name" => create a directory
+"cp -r + dirWantToCopy + CopyDir" => take a opy from existing directory to new or other existing dir
+"mv + dirWeWantToMove + destinationDir" => move directory to other existing or new directory
+"rm -r + dir names" => remove one or more directorys
+
+
+
+
+
+
+
+
+
+
+
+
