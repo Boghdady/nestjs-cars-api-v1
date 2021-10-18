@@ -81,6 +81,41 @@ CNAME record => w w w => @ => 3600
 # How to restart the VPS server when required
 "reboot" => this command will turn off and turn on your vps
 
+# How to establish SSH connections from the vps
+=> We want to connect our VPS to third part liberaries like github, gitlab, etc
+1- Generate ssh key inside our VPS "ssh-keygen"
+2- Set a password for your ssh key if you need
+3- "ll .ssh/" => to show key files in your vps root (id_rsa & id_rsa.pub)
+4- "eval $(ssh-agent -s)" Register the created ssh key with ssh agent to establish ssh connection directly
+or using any packages like git, this key will use Automatically.
+5- Associate created ssh agent with created ssh key "ssh-add .ssh/id_rsa"
+6- Get the ssh public key that we created and add them to github "cat .ssh/id_rsa.pub"
+7- Establish ssh connection with git for example "ssh -T git@github.com"
+
+# Execute recurring tasks on the VPS using Cronjobs
+Cronjob => means execute specific task in my VPS every specific time (minut, month , year , etc)
+- ex: Put current date & time into time.txt file every single minut
+1- open crontab to add this job. "crontab -e"
+2- choose nano editor to edit the file
+3- add this job in the file. "* * * * * date >> /root/time.txt"
+Note : use this website to know how to determine time (https://crontab.guru/)
+
+- Stop the corn job:
+1- open crontab to stop this job. "crontab -e"  
+2- remove or comment the job in corntab file  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
