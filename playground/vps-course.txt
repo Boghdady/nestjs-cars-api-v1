@@ -21,6 +21,7 @@ Host my_vps_root
   HostName "vpsIP"
   User root
   IdentityFile "location for ssh key file" ex: "/Users/index/.ssh/my_vps_root"
+4- Now you ca access your vps using "ssh my_vps_root"
 
 # Keeping the connection active with VPS server
 1- Open config file that we created in the prev step and add these two lines at 
@@ -61,6 +62,24 @@ CNAME record => w w w => @ => 3600
 "mv + dirWeWantToMove + destinationDir" => move directory to other existing or new directory
 "rm -r + dir names" => remove one or more directorys
 
+# Tricks to be agile on the command line with your vps
+"clear" => clear the terminal
+"control + r" => showing the history of the commands that i wrote it in the terminal
+
+# Use apt to manage and upgrade the VPS packages
+"apt --help" => show list of common commands that you can use
+"apt update" => update the list of packages
+
+# VPS services managment with the systemctl command
+"systemcrl --help" => show list of common commands that you can use
+"systemctl start + service name" =>  start the service
+"systemctl restart + service name" => restart the service (stop and start the service)
+"systemctl stop + service name" => stop the service
+"systemctl status + service name" => showing the service status
+"systemctl reload+  service name" => reload the configuration of the service (don't stop the service)
+
+# How to restart the VPS server when required
+"reboot" => this command will turn off and turn on your vps
 
 
 
